@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import InvoiceForm from './components/InvoiceForm';
+import InvoicePreview from './components/InvoicePreview';
 
-function App() {
+export default function App() {
+  const [invoice, setInvoice] = useState({
+    clientName: '',
+    clientAddress: '',
+    invoiceNumber: '',
+    invoiceDate: '',
+    items: [],
+    taxRate: 0.1,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-slate-100 py-10 px-4">
+      <h1 className="text-4xl font-bold text-center text-gray-800 mb-10">🧾 Elegant Invoice Builder</h1>
+      <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+        <InvoiceForm invoice={invoice} setInvoice={setInvoice} />
+        <InvoicePreview invoice={invoice} />
+      </div>
     </div>
   );
 }
-
-export default App;
